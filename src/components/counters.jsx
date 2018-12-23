@@ -11,13 +11,23 @@ class Counters extends Component {
     ]
   };
 
-  handleDelete = (counterId) => {
-    console.log("Event handler called", counterId);
+  handleIncrement = counter => {
+
+    const counters = [...this.state.counters];
+    const index = counters.indexOf(counter);
+
+    counters[index] = {...counter};
+    counters[index].value++;
+  
+    this.setState({ counters: counters });
+  }
+
+  handleDelete = counterId => {
+
     //instancia um novo array, não contendo o counter de id selecionado
     const counters = this.state.counters.filter(counter => counter.id !== counterId);
-    // sobrescreve o array do state co o que acabamos de criar
+    // sobrescreve o array do state com o que acabamos de criar
     this.setState({counters});
-
   }
 
   render() {
@@ -26,6 +36,7 @@ class Counters extends Component {
         {this.state.counters.map((counter)=> 
             <Counter 
                 key={counter.id} 
+                onIncrement={this.handleIncrement} 
                 onDelete={this.handleDelete} 
                 counter={counter} 
             />
