@@ -8,12 +8,12 @@ import React, { Component } from 'react';
 
 // algum devs usam esse método, mas é opcional
 
-const Navbar = (props) => {
+const Navbar = ({totalCounters}) => {
     return ( 
         <nav className="navbar navbar-light bg-light">
             <a href="" className="navbar-brand">
                 My counters
-                <span className="badge badge-pill badge-secondary">{props.totalCounters}</span>
+                <span className="badge badge-pill badge-secondary">{totalCounters}</span>
             </a>
         </nav> 
      );
